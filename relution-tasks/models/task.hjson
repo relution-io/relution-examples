@@ -1,0 +1,73 @@
+{
+	name: Task
+	label: Task
+	description: A task is an entry in the calendar
+	attributes: [
+    {
+			name: id
+			description: ID of task
+			type: String
+			mandatory: true
+			key: true
+    }
+    {
+			name: aclEntries
+			description: Who can read/write the task usually creator and assignee computed by server
+			type: String[]
+    }
+
+
+
+    {
+			name: creator
+			description: name of user creating the task
+			type: String
+    }
+    {
+			name: assignee
+			description: name of user assigned on the task
+			type: String
+    }
+
+
+
+    {
+			name: createdAt
+			description: when the task was created
+			type: Date
+    }
+    {
+			name: modifiedAt
+			description: when the task was modified
+			type: Date
+    }
+    {
+			name: dueTo
+			type: Date
+    }
+
+
+
+    {
+			name: title
+			description: Title of the task
+			type: String
+    }
+    {
+			name: description
+			type: String
+    }
+
+
+
+    {
+			name: state
+			description: Whether a task is overdue must be computed i.e. it is overdue when state is open and dueTo is in the past
+			type: String
+			enum: [
+				open
+				done
+			]
+    }
+  ]
+}

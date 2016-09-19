@@ -1,0 +1,18 @@
+{
+  //app name
+  name: relution-tasks
+  //description for the project
+  description: Auto Generated Description for derelution-tasksmoapp.
+  //on which baseAlias the app is available
+  baseAlias: /relution-tasks
+  //uuid identifier dont touch it!!!
+  uuid: 2a3cff20-78f5-11e6-bdc9-cfd2e913032c
+  //static files root folder to your client application
+  client: ./www
+  //node start script
+  server: ./app.js
+  //shows directoryIndex on the Server good for debugging
+  //directoryIndex: true
+  //if this attribute is set to true no anonymous user can see the app
+  private: false
+}
