@@ -21,7 +21,12 @@ $iconcolor: #FFFFFF;
                 text-align: center;
                 text-transform: uppercase;
                 transition: opacity .5s ease;
-                height: 15vh;
+                @media(orientation: landscape) {
+                    height: 20vh;
+                }
+                @media(orientation: portrait) {
+                    height: 20vw;
+                }
             }
             .item.button {
                 opacity: 1;

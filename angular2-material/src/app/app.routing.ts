@@ -7,5 +7,5 @@ import { LoggedInGuard } from './logged-in-guard';
 export const routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: PrivateComponent, canActivate: [LoggedInGuard] },
+  { path: 'home', component: PrivateComponent /*, canActivate: [LoggedInGuard] */ },
 ];
