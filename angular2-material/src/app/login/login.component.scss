@@ -6,7 +6,9 @@ $iconcolor: #FFFFFF;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(../../assets/img/mountain_forest.jpg);
+    background: url(../../assets/img/mountain_forest.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
     background-size: cover;
     md-card {
         border-radius: 0.2vw;
