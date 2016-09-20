@@ -43,6 +43,7 @@ function setupTask(task) {
     task.aclEntries = acl;
 }
 function createTask(task, model, options) {
+    task.id = task.id || ('task-' + Date.now());
     setupTask(task);
     if (task.state === 'open' && task.assignee !== task.creator) {
         var assignee = security.getUserByName(task.assignee, 'uuid');
