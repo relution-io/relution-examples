@@ -1,0 +1,15 @@
+<div class="app-content">
+  <md-card>
+    <md-card-content>
+      <form #form="ngForm" class="container">
+        <md-input class="item" #username placeholder="Username" [(ngModel)]="user.userName" name="userName" type="text">
+          <span md-prefix><md-icon [class.primary]="username.focused" class="icons">account_box</md-icon></span>
+        </md-input>
+        <md-input class="item" #password placeholder="Password" [(ngModel)]="user.password" name="password" type="password">
+          <span md-prefix><md-icon [class.primary]="password.focused" class="icons">lock</md-icon></span>
+        </md-input>
+        <button class="item button" md-raised-button (click)="onSubmit()" type="submit" name="action" [disabled]="!user.password.length || !user.userName.length" [class.disabled]="!user.password.length || !user.userName.length">Log in</button>
+      </form>
+    </md-card-content>
+  </md-card>
+</div>

@@ -1,0 +1,58 @@
+$iconcolor: #FFFFFF;
+
+.app-content {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../../assets/img/mountain_forest.jpg);
+    background-size: cover;
+    md-card {
+        border-radius: 0.2vw;
+        background-color: #3E363F;
+        md-card-content {
+            button {
+                background-color: #009688;
+                opacity: .25;
+                color: #FFFFFF;
+                text-align: center;
+                text-transform: uppercase;
+                transition: opacity .5s ease;
+                height: 15vh
+            }
+            .item.button {
+                opacity: 1;
+            }
+            .item.button.disabled {
+                opacity: .25;
+            }
+        }
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    margin: auto;
+}
+
+.item {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    .icons.material-icons {
+        color: $iconcolor;
+        opacity: 0.1;
+        transition: opacity .5s ease;
+        margin-right: 5px;
+    }
+    .icons.material-icons.primary {
+        opacity: 1;
+        color: $iconcolor;
+    } 
+}
