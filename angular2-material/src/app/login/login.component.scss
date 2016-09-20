@@ -6,12 +6,12 @@ $iconcolor: #FFFFFF;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(../../assets/img/mountain_forest.jpg) no-repeat center center fixed;
+    background: url(../../assets/img/forest.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     md-card {
-        border-radius: 0.2vw;
+        border-radius: 5px;
         background-color: #3E363F;
         md-card-content {
             button {
@@ -21,7 +21,7 @@ $iconcolor: #FFFFFF;
                 text-align: center;
                 text-transform: uppercase;
                 transition: opacity .5s ease;
-                height: 15vh
+                height: 15vh;
             }
             .item.button {
                 opacity: 1;
@@ -39,6 +39,12 @@ $iconcolor: #FFFFFF;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    @media(max-width: 736px) {
+        height: 30vw;
+    }
+    @media(orientation: portrait) {
+        height: 30vh;
+    }
     height: 30vh;
     margin: auto;
 }
