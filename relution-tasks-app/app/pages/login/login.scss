@@ -1,0 +1,22 @@
+// Colors
+$onyx: #3E363F;
+$cinnabar: #DD403A;
+$cosmiclatte: #FFFCE8;
+
+ion-content.login > scroll-content{
+	background-image: url('/assets/sun_forest.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: $onyx;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.login-card {
+  background-color: $onyx;
+  margin-top: 100px;
+  ion-item{
+    background: transparent;
+  }
+}

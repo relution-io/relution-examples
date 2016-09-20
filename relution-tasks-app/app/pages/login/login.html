@@ -1,0 +1,21 @@
+<ion-content padding relutiongray class="login">
+  <ion-card class="login-card">
+    <ion-card-header>
+      <p class="slogan" text-center light>Welcome to Relution</p>
+    </ion-card-header>
+    <form #form="ngForm">
+      <ion-list>
+        <ion-item>
+          <ion-input light placeholder="Username" type="text" name="userName" [(ngModel)]="credentials.userName" required autofocus></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input light placeholder="Passwort" type="password" name="password" [(ngModel)]="credentials.password" required></ion-input>
+        </ion-item>
+        <button class="signin button-onyx" [disabled]="!credentials.userName.length || !credentials.password.length" type="submit"
+          on-click="onSubmit()" block>
+      <ion-icon name="log-in"  item-left></ion-icon> Sign in
+    </button>
+      </ion-list>
+    </form>
+  </ion-card>
+</ion-content>

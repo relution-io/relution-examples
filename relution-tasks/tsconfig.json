@@ -3,7 +3,7 @@
     "target": "ES5",
     "module": "commonjs",
     "declaration": false,
-    "sourceMap": true,
+    "sourceMap": false,
     "rootDir": "./",
     "outDir": "./",
     "pretty": true,
@@ -14,7 +14,8 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": false,
     "forceConsistentCasingInFileNames": true,
-    "newLine": "lf"
+    "newLine": "LF",
+    "inlineSourceMap": true
   },
   "filesGlob": [
     "**/!(*.d).ts",
