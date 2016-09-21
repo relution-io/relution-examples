@@ -2,8 +2,9 @@ import {Credentials} from 'relution-sdk/lib/security/auth';
 import { Component, Input} from '@angular/core';
 import {NavController, LoadingController, AlertController} from 'ionic-angular';
 import { NgForm } from '@angular/common';
+import {HomePage} from '../home/home';
 import * as Relution from 'relution-sdk';
-const prod = {userName: '', password: ''};
+const prod = {userName: 'mutaboradmin', password: 'mway1234'};
 
 @Component({
   templateUrl: 'build/pages/login/login.html'
@@ -32,10 +33,11 @@ export class LoginPage {
       // go to the tab page
       this.credentials.userName = "";
       this.credentials.password = "";
-      // this.nav.setRoot(ScannerLogPage)
-      // .then(() => {
-      //   loading.dismiss();
-      // }).catch(loading.dismiss);
+      this.nav.setRoot(HomePage)
+        .then(() => {
+          loading.dismiss();
+        })
+        .catch(loading.dismiss);
     })
     .catch((e: Relution.web.HttpError) => { // checkout https://relution-io.github.io/relution-sdk/interfaces/_web_http_.httperror.html
       loading.dismiss();

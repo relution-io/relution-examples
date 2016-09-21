@@ -1,2 +1,24 @@
 .home {
+  ion-item{
+    p{
+      color: black;
+      font-size: 16px;
+    }
+  }
+
+ion-list .item .item-inner {
+  border-bottom: none;
+}
+  ion-item-divider{
+    border-bottom: none;
+  }
+  ion-row {
+    padding: 0;
+    ion-col:first-child {
+      color: #ccc;
+    }
+    ion-col:last-child {
+      color: $onyx;
+    }
+  }
 }

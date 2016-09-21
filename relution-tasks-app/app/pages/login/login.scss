@@ -3,8 +3,8 @@ $onyx: #3E363F;
 $cinnabar: #DD403A;
 $cosmiclatte: #FFFCE8;
 
-ion-content.login > scroll-content{
-	background-image: url('/assets/sun_forest.jpg');
+ion-content.login > scroll-content {
+	background-image: url('./../../assets/sun_forest.jpg');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -18,5 +18,8 @@ ion-content.login > scroll-content{
   margin-top: 100px;
   ion-item{
     background: transparent;
+  }
+  .text-input {
+    color: $cosmiclatte;
   }
 }

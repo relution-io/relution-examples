@@ -68,6 +68,7 @@ function setupTask(task: Task) {
 }
 
 export function createTask(task: Task, model, options) {
+  task.id = task.id || ('task-' + Date.now());
   setupTask(task);
 
   if (task.state === 'open' && task.assignee !== task.creator) {
