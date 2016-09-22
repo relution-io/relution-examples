@@ -2,7 +2,7 @@
   //app name
   name: relution-tasks
   //description for the project
-  description: Auto Generated Description for derelution-tasksmoapp.
+  description: Auto Generated Description for relution-tasks.
   //on which baseAlias the app is available
   baseAlias: /relution-tasks
   //uuid identifier dont touch it!!!
