@@ -8,7 +8,7 @@
   //uuid identifier dont touch it!!!
   uuid: 2a3cff20-78f5-11e6-bdc9-cfd2e913032c
   //static files root folder to your client application
-  client: ./www
+  client: ./app/www
   //node start script
   server: ./app.js
   //shows directoryIndex on the Server good for debugging

@@ -8,7 +8,8 @@ enableProdMode();
 
 const mway = 'https://mway.relution.io';
 const local = 'https://pbrewing.mwaysolutions.com';
-const home = 'http://10.21.4.52:8080/';
+const home = 'http://10.21.4.52:8080';
+const ip = 'http://192.168.99.100:8080';
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'
@@ -18,11 +19,14 @@ export class RelutionTasksApp {
 
   constructor(public platform: Platform) {
     // initialized the Relution SDK
-    Relution.init({
-      serverUrl: local,
-      debug: true,
-      application: 'relution-tasks'
-    });
+    Relution
+      .init({
+        serverUrl: ip,
+        debug: true,
+        application: 'relution-tasks'
+      })
+      .then((info) => {
+      });
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

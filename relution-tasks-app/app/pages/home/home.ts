@@ -36,8 +36,10 @@ export class HomePage {
     const model = new this.tasks.collection.model();
     model.set('title', title);
     model.set('description', description);
+    debugger;
     Q(model.save())
       .then((model) => {
+        debugger;
         this.models = [];
         return Q(this.tasks.fetch());
       })
@@ -85,5 +87,16 @@ export class HomePage {
       ]
     });
     prompt.present();
+  }
+
+  destroy(id: string) {
+    console.log(id);
+    const model = this.tasks.collection.get(id);
+    debugger;
+    Q(model.destroy()).then((resp) => {
+      console.log(resp);
+    }).catch(e => {
+      console.error(e);
+    })
   }
 }

@@ -12,7 +12,18 @@
 <ion-content padding class="home">
   <ion-list onyx>
     <ion-item *ngFor="let task of models">
-      <ion-item-divider onyx> {{task.attributes.title ? task.attributes.title : 'no Title assigned'}}</ion-item-divider>
+      <ion-item-divider onyx>
+        <ion-row>
+          <ion-col width-70>
+            {{task.attributes.title ? task.attributes.title : 'no Title assigned'}}
+          </ion-col>
+          <ion-col text-right>
+            <button (click)="destroy(task.get('id'))" clear>
+              <ion-icon danger name="trash"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+        </ion-item-divider>
       <ion-grid>
         <ion-row>
           <ion-col>
