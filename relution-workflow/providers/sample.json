@@ -1,0 +1,272 @@
+[
+  {
+    "id": "A",
+    "header": {
+      "typeOfMail": "approve_or_reject",
+      "approvalMessage": "Devices for Developers",
+      "totalValue": "1218",
+      "currency": "€",
+      "objectId": "1263617231762"
+    },
+    "approver": [{
+      "receivedDate": "2015-04-05T14:19:29.807Z"
+    }],
+    "requester": {
+      "name": "Homer Simpson",
+      "email": "homer@springfield.com",
+      "phone": "08543222222"
+    },
+    "items": [
+      {
+        "itemId": 1,
+        "description": "Iphone 6",
+        "price": "600",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {
+          "street": "Stresemannstrasse",
+          "houseNum1": "79",
+          "postCode1": "70182",
+          "city1": "Stuttgart",
+          "country": "DE",
+          "countryName": "Germany",
+          "region": "BW",
+          "regionName": "Baden Württemberg",
+          "telNumber": "+4971125254700",
+          "telExtens": "",
+          "email": "p.brewing@mwaysolutions.com",
+          "coCode": "",
+          "building": "",
+          "floor": "erdegeschoss",
+          "room": ""
+        },
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": [{
+          "accountingObject": "ZCC",
+          "accountingObjectDescription": "Lorem Ipsum",
+          "accountingValue": "7777",
+          "accountingNo": "Lorem",
+          "distributionPercentage": 70,
+          "distributionQuantity": 50,
+          "glAccount": "account"
+        }]
+      },
+      {
+        "itemId": 2,
+        "description": "Iphone 6+",
+        "price": "750",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {
+        },
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      }
+    ]
+  },
+  {
+    "id": "B",
+    "header": {
+      "typeOfMail": "approve_or_reject",
+      "approvalMessage": "Devices for Developers",
+      "totalValue": "1218",
+      "currency": "€",
+      "objectId": "1263617231762"
+    },
+    "approver": [{
+      "receivedDate": "2015-04-03T14:19:29.807Z"
+    }],
+    "requester": {
+      "name": "March Simpson",
+      "email": "march@springfield.com",
+      "phone": "08543222222"
+    },
+    "items": [
+      {
+        "itemId": 3,
+        "description": "Iphone 6",
+        "price": "600",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {},
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      },
+      {
+        "itemId": 4,
+        "description": "Iphone 6+",
+        "price": "750",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {
+        },
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      }
+    ]
+  },
+  {
+    "id": "C",
+    "header": {
+      "typeOfMail": "approve_or_reject",
+      "approvalMessage": "Devices for Developers",
+      "totalValue": "1218",
+      "currency": "€",
+      "objectId": "1263617231762"
+    },
+    "approver": [{
+      "receivedDate": "2015-04-01T14:19:29.807Z"
+    }],
+    "requester": {
+      "name": "Maggy Simpson",
+      "email": "maggy@springfield.com",
+      "phone": "08543222222"
+    },
+    "items": [
+      {
+        "itemId": 5,
+        "description": "Iphone 6",
+        "price": "600",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {},
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      },
+      {
+        "itemId": 6,
+        "description": "Iphone 6+",
+        "price": "750",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {
+        },
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      }
+    ]
+  },
+  {
+    "id": "D",
+    "approver": [{
+      "receivedDate": "2015-04-01T14:19:29.807Z"
+    }],
+    "header": {
+      "typeOfMail": "approve_or_reject",
+      "approvalMessage": "Devices for Developers",
+      "totalValue": "1218",
+      "currency": "€",
+      "objectId": "1263617231762"
+    },
+    "requester": {
+      "name": "Bart Simpson",
+      "email": "bart@springfield.com",
+      "phone": "08543222222"
+    },
+    "items": [
+      {
+        "itemId": 7,
+        "description": "Iphone 6",
+        "price": "600",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {},
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      },
+      {
+        "itemId": 8,
+        "description": "Iphone 6+",
+        "price": "750",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {
+        },
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      }
+    ]
+  },
+  {
+    "id": "E",
+    "approver": [{
+      "receivedDate": "2015-04-01T14:19:29.807Z"
+    }],
+    "header": {
+      "typeOfMail": "approve_or_reject",
+      "approvalMessage": "Devices for Developers",
+      "totalValue": "1218",
+      "currency": "€",
+      "objectId": "1263617231762"
+    },
+    "requester": {
+      "name": "Lisa Simpson",
+      "email": "lisa@springfield.com",
+      "phone": "08543222222"
+    },
+    "items": [
+      {
+        "itemId": 9,
+        "description": "Iphone 6",
+        "price": "600",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {},
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      },
+      {
+        "itemId": 11,
+        "description": "Iphone 6+",
+        "price": "750",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {
+        },
+        "deliveryDate": "2015-02-01T14:19:29.807Z",
+        "costObjects": []
+      }
+    ]
+  },
+  {
+    "id": "F",
+    "approver": [{
+      "receivedDate": "2015-04-01T14:19:29.807Z"
+    }],
+    "header": {
+      "typeOfMail": "approve_or_reject",
+      "approvalMessage": "Devices for Developers",
+      "totalValue": "1218",
+      "currency": "€",
+      "objectId": "1263617231762"
+    },
+    "requester": {
+      "name": "Lisa Simpson",
+      "email": "lisa@springfield.com",
+      "phone": "08543222222"
+    },
+    "items": [
+      {
+        "itemId": 9,
+        "description": "Iphone 6",
+        "price": "600",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {},
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      },
+      {
+        "itemId": 11,
+        "description": "Iphone 6+",
+        "price": "750",
+        "quantity": "5",
+        "priceUnit": "€",
+        "shipToAddress": {
+        },
+        "deliveryDate": "2015-04-01T14:19:29.807Z",
+        "costObjects": []
+      }
+    ]
+  }
+]
