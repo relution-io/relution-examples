@@ -25,16 +25,16 @@
  */
 var _ = require('lodash');
 var fs = require('fs');
-var security = require('mcap/security.js');
-var push = require('mcap/push.js');
+var security = require('relution/security.js');
+var push = require('relution/push.js');
 
 // datasync setup
 var backbone = require('backbone');
-var datasync = require('mcap/datasync.js');
+var datasync = require('relution/datasync.js');
 var options = {
   entity: 'approvals',
   type: {
-    container: 'approval MetaModelContainer',
+    container: 'workflow-app MetaModelContainer',
     model: 'approval'
   },
   idAttribute: 'id',
@@ -78,7 +78,7 @@ module.exports = {
 
     // sample load
     return JSON.parse(fs.readFileSync(module.filename + 'on')).forEach(function sample(approval) {
-	  approval.id = 'sample-' + approval.id + '-' + user.uuid;
+      approval.id = 'sample-' + approval.id + '-' + user.uuid;
       return module.exports.save(approval, user);
     });
   },
@@ -111,7 +111,7 @@ module.exports = {
     var approver = {
       id: user.name
     };
-	model.attributes.approver = model.attributes.approver || [{}];
+    model.attributes.approver = model.attributes.approver || [{}];
     model.attributes.approver[0] = _.assign(approver, model.attributes.approver[0]);
     var requester = {
       id: user.name
@@ -123,23 +123,6 @@ module.exports = {
     if (error) {
       throw error;
     }
-
-    // push message announcing new approval
-    var jobs = push.postPushNotification({
-      message: 'Newly pending approvals are waiting for your acceptance.',
-      description: model.attributes.header.approvalMessage,
-      badge: '+1',
-      extras: {
-        id: model.id
-      },
-      // filter on user's devices only
-      deviceFilter: {
-        type: 'string',
-        fieldName: 'user',
-        value: user.uuid
-      }
-    });
-    console.info('pushed approval ' + model.id + ' as ' + JSON.stringify(jobs) + '.');
     return xhr;
   },
 

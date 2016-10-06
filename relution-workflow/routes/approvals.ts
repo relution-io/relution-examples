@@ -6,9 +6,9 @@ const providers = require('../providers');
 const util = require('util');
 
 // relution APIs
-const security = require('mcap/security.js');
+const security = require('relution/security.js');
 const livedata = require('relution/livedata.js');
-const datasync = require('mcap/datasync.js');
+const datasync = require('relution/datasync.js');
 
 export function init(app: express.Application) {
 // filtering of CRUDs not allowed,
@@ -33,9 +33,9 @@ export function init(app: express.Application) {
   app.get('/refresh', function (req, res) {
     var user = security.getCurrentUser('uuid', 'name', 'organizationUuid');
     if (user) {
-      res.send(200, providers['sample'].refresh(user));
+      res.status(200).json(providers['sample'].refresh(user));
     } else {
-      res.send(404);
+      res.status(404);
     }
   });
 
@@ -65,7 +65,7 @@ export function init(app: express.Application) {
   var options = {
     entity: 'approvals',
     type: {
-      container: 'approval MetaModelContainer',
+      container: 'workflow-app MetaModelContainer',
       model: 'approval'
     },
     idAttribute: 'id',
