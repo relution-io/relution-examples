@@ -1,129 +1,92 @@
-'use strict';
-/**
- * routes/approvals.js
- * IBX Approval Backend
- *
- * Created by Thomas Beckmann on 02.03.2015
- * Copyright (c)
- * 2015
- * M-Way Solutions GmbH. All rights reserved.
- * http://www.mwaysolutions.com
- * Redistribution and use in source and binary forms, with or without
- * modification, are not permitted.
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
- * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
- * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES INCLUDING,
- * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-
+"use strict";
 // approval APIs
 var providers = require('../providers');
-
 // node.js APIs
 var util = require('util');
-
 // relution APIs
 var security = require('mcap/security.js');
-var bikini = require('mcap/bikini.js');
+var livedata = require('relution/livedata.js');
 var datasync = require('mcap/datasync.js');
-
-// set up datasync middleware for /approvals endpoint allowing only:
-// - GET all
-// - GET by id
-// - PATCH state
-module.exports = function approvals(app) {
-
-  // filtering of CRUDs not allowed,
-  // infrastructure permits arbitrary update/patch operations,
-  // for our use case we allow patching the state and comment only
-  var errorStatus = function errorStatus(status, req, res) {
-    res.send(status);
-  };
-  app.put('/approvals/:id', errorStatus.bind(undefined, 405)); // no update
-  app.patch('/approvals/:id', function filterPatch(req, res, next) {
-    if (req.body.state && req.body.comment) {
-      next('route'); // acceptable patch request targeting the state and comment field only
-    } else {
-      next(); // disallowed patch request
+function init(app) {
+    // filtering of CRUDs not allowed,
+    // infrastructure permits arbitrary update/patch operations,
+    // for our use case we allow patching the state and comment only
+    var errorStatus = function errorStatus(status, req, res) {
+        res.send(status);
+    };
+    app.put('/approvals/:id', errorStatus.bind(undefined, 405)); // no update
+    app.patch('/approvals/:id', function filterPatch(req, res, next) {
+        if (req.body.state && req.body.comment) {
+            next('route'); // acceptable patch request targeting the state and comment field only
+        }
+        else {
+            next(); // disallowed patch request
+        }
+    }, errorStatus.bind(undefined, 400)); // patch for state updates only
+    // following is the case already as our backend does not implement create/delete:
+    //app.post('/approvals', errorStatus.bind(undefined, 405)); // no creation
+    //app.delete('/approvals/:id', errorStatus.bind(undefined, 405)); // no deletion
+    //app.delete('/approvals', errorStatus.bind(undefined, 405)); // no purge
+    app.get('/refresh', function (req, res) {
+        var user = security.getCurrentUser('uuid', 'name', 'organizationUuid');
+        if (user) {
+            res.send(200, providers['sample'].refresh(user));
+        }
+        else {
+            res.send(404);
+        }
+    });
+    // error constructor used for CRUD interface
+    function HttpError(status) {
+        Error.call(this, Array.prototype.slice.call(arguments, 1));
+        this.status = status;
     }
-  }, errorStatus.bind(undefined, 400)); // patch for state updates only
-
-  // following is the case already as our backend does not implement create/delete:
-  //app.post('/approvals', errorStatus.bind(undefined, 405)); // no creation
-  //app.delete('/approvals/:id', errorStatus.bind(undefined, 405)); // no deletion
-  //app.delete('/approvals', errorStatus.bind(undefined, 405)); // no purge
-
-  app.get('/refresh', function (req, res) {
-    var user = security.getCurrentUser('uuid', 'name', 'organizationUuid');
-    if (user) {
-      res.send(200, providers['sample'].refresh(user));
-    } else {
-      res.send(404);
-    }
-  });
-
-  // error constructor used for CRUD interface
-  function HttpError(status) {
-    Error.call(this, Array.prototype.slice.call(arguments, 1));
-    this.status = status;
-  };
-  util.inherits(HttpError, Error);
-
-  // hook-in refresh mechanism executed on client connect
-  app.use('/approvals/info', function refreshApproval(req, res, next) {
-
-	var user = security.getCurrentUser('uuid', 'name', 'organizationUuid');
-	if (user) {
-      for (var provider in providers) {
-        var impl = providers[provider];
-        if (impl.refresh) {
-          impl.refresh(user);
+    ;
+    util.inherits(HttpError, Error);
+    // hook-in refresh mechanism executed on client connect
+    app.use('/approvals/info', function refreshApproval(req, res, next) {
+        var user = security.getCurrentUser('uuid', 'name', 'organizationUuid');
+        if (user) {
+            for (var provider in providers) {
+                var impl = providers[provider];
+                if (impl.refresh) {
+                    impl.refresh(user);
+                }
+            }
         }
-      }
-	}
-    return next();
-  });
-
-  // approvals CRUD interface
-  var options = {
-    entity: 'approvals',
-    type: {
-      container: 'approval MetaModelContainer',
-      model: 'approval'
-    },
-    idAttribute: 'id',
-    backend: new datasync.Backend({
-      // incoming patch request is translated to an update by infrastructure,
-      // process update to access additional data of the approval, such as provider field
-      update: function updateApproval(approval, callback) {
-        // select provider
-        var provider = providers[approval.provider];
-        if (!provider) {
-          return callback(new HttpError(400, 'unknown provider: ' + approval.provider));
-        }
-
-        // apply approve/reject function of provider
-        switch (approval.state) {
-          case 'approved':
-            return provider.approve.apply(this, arguments);
-          case 'rejected':
-            return provider.reject.apply(this, arguments);
-          default:
-            return callback(new HttpError(400, 'unknown state: ' + approval.state));
-        }
-      }
-      // read is supplied by infrastructure to fetch data from live store only
-    })
-  };
-  app.use('/approvals', bikini.middleware(options));
-  return options;
-
-}(global.app);
+        return next();
+    });
+    // approvals CRUD interface
+    var options = {
+        entity: 'approvals',
+        type: {
+            container: 'approval MetaModelContainer',
+            model: 'approval'
+        },
+        idAttribute: 'id',
+        backend: new datasync.Backend({
+            // incoming patch request is translated to an update by infrastructure,
+            // process update to access additional data of the approval, such as provider field
+            update: function updateApproval(approval, callback) {
+                // select provider
+                var provider = providers[approval.provider];
+                if (!provider) {
+                    return callback(new HttpError(400));
+                }
+                // apply approve/reject function of provider
+                switch (approval.state) {
+                    case 'approved':
+                        return provider.approve.apply(this, arguments);
+                    case 'rejected':
+                        return provider.reject.apply(this, arguments);
+                    default:
+                        return callback(new HttpError(400));
+                }
+            }
+        })
+    };
+    app.use('/approvals', livedata.middleware(options));
+    return options;
+}
+exports.init = init;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwcm92YWxzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYXBwcm92YWxzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQSxnQkFBZ0I7QUFDaEIsSUFBTSxTQUFTLEdBQUcsT0FBTyxDQUFDLGNBQWMsQ0FBQyxDQUFDO0FBRTFDLGVBQWU7QUFDZixJQUFNLElBQUksR0FBRyxPQUFPLENBQUMsTUFBTSxDQUFDLENBQUM7QUFFN0IsZ0JBQWdCO0FBQ2hCLElBQU0sUUFBUSxHQUFHLE9BQU8sQ0FBQyxrQkFBa0IsQ0FBQyxDQUFDO0FBQzdDLElBQU0sUUFBUSxHQUFHLE9BQU8sQ0FBQyxzQkFBc0IsQ0FBQyxDQUFDO0FBQ2pELElBQU0sUUFBUSxHQUFHLE9BQU8sQ0FBQyxrQkFBa0IsQ0FBQyxDQUFDO0FBRTdDLGNBQXFCLEdBQXdCO0lBQzdDLGtDQUFrQztJQUNoQyw0REFBNEQ7SUFDNUQsZ0VBQWdFO0lBQ2hFLElBQUksV0FBVyxHQUFHLHFCQUFxQixNQUFNLEVBQUUsR0FBRyxFQUFFLEdBQUc7UUFDckQsR0FBRyxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsQ0FBQztJQUNuQixDQUFDLENBQUM7SUFDRixHQUFHLENBQUMsR0FBRyxDQUFDLGdCQUFnQixFQUFFLFdBQVcsQ0FBQyxJQUFJLENBQUMsU0FBUyxFQUFFLEdBQUcsQ0FBQyxDQUFDLENBQUMsQ0FBQyxZQUFZO0lBQ3pFLEdBQUcsQ0FBQyxLQUFLLENBQUMsZ0JBQWdCLEVBQUUscUJBQXFCLEdBQUcsRUFBRSxHQUFHLEVBQUUsSUFBSTtRQUM3RCxFQUFFLENBQUMsQ0FBQyxHQUFHLENBQUMsSUFBSSxDQUFDLEtBQUssSUFBSSxHQUFHLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxDQUFDLENBQUM7WUFDdkMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxDQUFDLENBQUMsc0VBQXNFO1FBQ3ZGLENBQUM7UUFBQyxJQUFJLENBQUMsQ0FBQztZQUNOLElBQUksRUFBRSxDQUFDLENBQUMsMkJB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

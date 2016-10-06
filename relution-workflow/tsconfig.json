@@ -26,6 +26,7 @@
     "files": [
         "typings/index.d.ts",
         "app.ts",
+        "routes/approvals.ts",
         "routes/connectors.ts",
         "routes/push.ts",
         "routes/routes.ts"
