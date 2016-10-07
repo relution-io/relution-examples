@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { StaticUsers } from './../../providers/config';
+import { TabsPage } from './../tabs/tabs';
 // import {login} from './../../../node_modules/relution-sdk/lib/web/http';
 
 @Component({
@@ -25,7 +26,7 @@ export class StartPage {
     const user: Array<{password: String, username: String}> = this.staticUsers.filter((user) => {
       return user.username === username;
     });
-
+    this.navCtrl.push(TabsPage);
     // login({
     //   username: user[0].username,
     //   password: user[0].password

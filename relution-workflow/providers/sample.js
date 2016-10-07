@@ -138,18 +138,18 @@ module.exports = {
       throw error;
     }
 
-    // silent push informing about deletion
-    var jobs = push.postPushNotification({
-      extras: {
-        id: model.id
-      },
-      // filter on user's devices only
-      deviceFilter: {
-        type: 'string',
-        fieldName: 'user',
-        value: user.uuid
-      }
-    });
+    // // silent push informing about deletion
+    // var jobs = push.postPushNotification({
+    //   extras: {
+    //     id: model.id
+    //   },
+    //   // filter on user's devices only
+    //   deviceFilter: {
+    //     type: 'string',
+    //     fieldName: 'user',
+    //     value: user.uuid
+    //   }
+    // });
     console.info('pushed approval ' + model.id + ' as ' + JSON.stringify(jobs) + '.');
     return xhr;
   },

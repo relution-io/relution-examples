@@ -7,13 +7,13 @@ import { Globalization } from 'ionic-native';
 */
 @Injectable()
 export class DeviceGlobalization {
-  public preferredLanguage = 'de';
+  public static preferredLanguage = 'de_DE';
 
   constructor(public platform: Platform) {
     if (platform.is('mobile')) {
       Globalization.getPreferredLanguage()
         .then((lang) => {
-          this.preferredLanguage = lang.value;
+          DeviceGlobalization.preferredLanguage = lang.value === 'de_DE' ? lang.value : 'en_UK';
           console.log('Hello DeviceGlobalization Provider');
           console.log(lang);
         })
