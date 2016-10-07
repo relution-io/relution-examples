@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Approval-list</ion-title>
+    <ion-title>Workflow list</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,10 +16,26 @@
 <ion-content padding>
   <ion-card *ngFor="let model of collection;">
     <ion-card-header>
-      {{model?.header?.approvalMessage}}
+      {{model?.approver[0]?.id}} / {{model?.id}}
     </ion-card-header>
-    <ion-card-content>
-      {{model|json}}
+    <ion-card-content *ngFor="let item of model.items">
+      <ion-grid >
+        <!--<ion-row>
+          <ion-col text-left></ion-col>
+          <ion-col text-right></ion-col>
+        </ion-row>-->
+        <ion-row>
+          <ion-col text-left>
+            {{item?.description}}
+          </ion-col>
+          <ion-col text-right>
+            {{item?.price}} {{item?.priceUnit}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
+    <ion-item-divider text-right>
+      <h4>{{model.items.length}}  Items</h4>
+    </ion-item-divider>
 </ion-card>
 </ion-content>

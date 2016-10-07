@@ -1,6 +1,6 @@
  [
     {
-      "_id": "sample-B-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "_id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "approver": [
         {
           "receivedDate": "2015-04-03T14:19:29.807Z",
@@ -22,7 +22,7 @@
         "currency": "€",
         "objectId": "1263617231762"
       },
-      "id": "sample-B-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "state": "open",
       "items": [
         {
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "_id": "sample-C-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "_id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "approver": [
         {
           "receivedDate": "2015-04-01T14:19:29.807Z",
@@ -70,7 +70,7 @@
         "currency": "€",
         "objectId": "1263617231762"
       },
-      "id": "sample-C-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "state": "open",
       "items": [
         {
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "_id": "sample-D-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "_id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "approver": [
         {
           "receivedDate": "2015-04-01T14:19:29.807Z",
@@ -118,7 +118,7 @@
         "currency": "€",
         "objectId": "1263617231762"
       },
-      "id": "sample-D-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "state": "open",
       "items": [
         {
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "_id": "sample-E-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "_id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "approver": [
         {
           "receivedDate": "2015-04-01T14:19:29.807Z",
@@ -166,7 +166,7 @@
         "currency": "€",
         "objectId": "1263617231762"
       },
-      "id": "sample-E-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "state": "open",
       "items": [
         {
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "_id": "sample-F-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "_id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "approver": [
         {
           "receivedDate": "2015-04-01T14:19:29.807Z",
@@ -214,7 +214,7 @@
         "currency": "€",
         "objectId": "1263617231762"
       },
-      "id": "sample-F-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "state": "open",
       "items": [
         {
@@ -277,7 +277,7 @@
       "items": []
     },
     {
-      "_id": "sample-A-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "_id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "approver": [
         {
           "receivedDate": "2015-04-05T14:19:29.807Z",
@@ -299,7 +299,7 @@
         "currency": "€",
         "objectId": "1263617231762"
       },
-      "id": "sample-A-ac5b1e69-63af-4945-9744-9b3f7c078caf",
+      "id": "ac5b1e69-63af-4945-9744-9b3f7c078caf",
       "state": "open",
       "items": [
         {
