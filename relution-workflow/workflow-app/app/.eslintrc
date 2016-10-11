@@ -1,0 +1,26 @@
+{
+  "extends": "../.eslintrc",
+  "env": {
+    "node": false,
+    "browser": true
+  },
+  "globals": {
+    "angular": true,
+    "ionic": true,
+    "cordova": false,
+    "window": true,
+    "document": true,
+    "localforage": true,
+    "jQuery": true,
+    "Relution": true,
+    "Media": true,
+    "mCAP": true,
+    "alert": true,
+    "mina": true,
+    "screen": true,
+    "Snap": true
+  },
+  "rules": {
+    "no-console": 0
+  }
+}

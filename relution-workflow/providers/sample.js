@@ -150,7 +150,8 @@ module.exports = {
     //     value: user.uuid
     //   }
     // });
-    console.info('pushed approval ' + model.id + ' as ' + JSON.stringify(jobs) + '.');
+    //JSON.stringify(jobs)
+    console.info('pushed approval ' + model.id + ' as .');
     return xhr;
   },
 

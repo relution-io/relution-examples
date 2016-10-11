@@ -1,0 +1,19 @@
+# more info here - http://eslint.org/docs/user-guide/configuring.html#ignoring-files-and-directories
+
+# node_modules ignored by default
+
+# ignore bower_components
+app/bower_components
+.DS_Store
+node_modules
+dist
+.tmp
+.sass-cache
+app/bower_components
+platforms/ios/www/**
+**/xcuserdata/
+xcshareddata/
+.idea/*
+app/main/constants/config-const.js
+app/libs/backbone-sorting.js
+app/bootstrap.js

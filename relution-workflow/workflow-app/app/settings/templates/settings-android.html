@@ -1,0 +1,41 @@
+<ion-view hide-back-button="true" hide-nav-bar="true" can-swipe-back="false" nav-transition="none">
+  <ion-content>
+    <div class="bar bar-header bar-light">
+      <material-sidebar-toggle></material-sidebar-toggle>
+      <h1 class="title text-positive">{{'SETTINGS'|translate}}</h1>
+    </div>
+    <div class="list has-header">
+      <ion-item class="item item-divider">
+        {{'ACCOUNT'|translate}}
+      </ion-item>
+      <ion-item>
+        <span class="row">
+          <span class="col-50">{{'SERVER'|translate}}</span>
+          <span class="col-50 text-right text-ellipsis">{{settingsC.server}}</span>
+        </span>
+      </ion-item>
+      <ion-item>
+        <span class="row">
+          <span class="col-50">{{'USER_ID'|translate}}</span>
+          <span class="col-50 text-right text-ellipsis">{{settingsC.user.name}}</span>
+        </span>
+      </ion-item>
+      <ion-item ng-if="settingsC.user.email">
+        <span class="row">
+          <span class="col-50">{{'EMAIL'|translate}}</span>
+          <span class="col-50 text-right text-ellipsis">{{settingsC.user.email}}</span>
+        </span>
+      </ion-item>
+      <ion-item ng-if="settingsC.user.country" class="item {{settingsC.user.country|lowercase}}">
+        <span class="row">
+          <span class="col-50">{{'COUNTRY'|translate}}</span>
+          <span class="col-50 text-right text-ellipsis">{{settingsC.user.country}}</span>
+        </span>
+      </ion-item>
+      <ion-item class="item item-divider">
+        {{'COMMON'|translate}}
+      </ion-item>
+      <translation-select-item></translation-select-item>
+    </div>
+  </ion-content>
+</ion-view>

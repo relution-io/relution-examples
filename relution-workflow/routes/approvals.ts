@@ -11,13 +11,13 @@ const livedata = require('relution/livedata.js');
 const datasync = require('relution/datasync.js');
 
 export function init(app: express.Application) {
-// filtering of CRUDs not allowed,
+  // filtering of CRUDs not allowed,
   // infrastructure permits arbitrary update/patch operations,
   // for our use case we allow patching the state and comment only
   var errorStatus = function errorStatus(status, req, res) {
     res.send(status);
   };
-  app.put('/approvals/:id', errorStatus.bind(undefined, 405)); // no update
+
   app.patch('/approvals/:id', function filterPatch(req, res, next) {
     if (req.body.state && req.body.comment) {
       next('route'); // acceptable patch request targeting the state and comment field only
