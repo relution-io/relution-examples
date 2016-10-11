@@ -30,7 +30,10 @@ export function init(app: express.Application) {
   //app.delete('/approvals/:id', errorStatus.bind(undefined, 405)); // no deletion
   //app.delete('/approvals', errorStatus.bind(undefined, 405)); // no purge
 
-  app.get('/refresh', function (req, res) {
+  app.get('/refresh', function (req, res, next) {
+    if (req.method === 'OPTIONS' || req.method === 'HEAD') {
+      return res.status(200).end();
+    }
     var user = security.getCurrentUser('uuid', 'name', 'organizationUuid');
     if (user) {
       res.status(200).json(providers['sample'].refresh(user));
@@ -48,16 +51,18 @@ export function init(app: express.Application) {
 
   // hook-in refresh mechanism executed on client connect
   app.use('/approvals/info', function refreshApproval(req, res, next) {
-
-	var user = security.getCurrentUser('uuid', 'name', 'organizationUuid');
-	if (user) {
+    if (req.method === 'OPTIONS' || req.method === 'HEAD') {
+      return next();
+    }
+    var user = security.getCurrentUser('uuid', 'name', 'organizationUuid');
+    if (user) {
       for (var provider in providers) {
         var impl = providers[provider];
         if (impl.refresh) {
           impl.refresh(user);
         }
       }
-	}
+    }
     return next();
   });
 

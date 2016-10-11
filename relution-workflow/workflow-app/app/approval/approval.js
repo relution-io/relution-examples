@@ -12,10 +12,10 @@ angular.module('approval', ['main'])
           }
         },
         resolve: {
-          'hasToken': function (LoginService, $q, $state) {
-            // if (!LoginService.isLoggedIn) {
-            //   return $q.when($state.go($relutionSecurityConfig.forwardStateAfterLogout));
-            // }
+          'hasToken': function ($q, $state) {
+            if (!Relution.security.getCurrentUser()) {
+              return $q.when($state.go('mway.login'));
+            }
             return $q.when(true);
           }
         }

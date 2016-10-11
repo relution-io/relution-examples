@@ -27,11 +27,11 @@
  * @description add your description
  */
 angular.module('auth')
-  .controller('LoginCtrl', function LoginCtrl ($scope, $rootScope, $state, $filter, AlertService) {
+  .controller('LoginCtrl', function LoginCtrl ($scope, $rootScope, $state, $filter, AlertService, Config) {
     var self = this;
     this.state = {
       loginIsInProgress: false
-    }
+    };
     /**
      * @ngdoc property
      * @name loader
@@ -46,6 +46,14 @@ angular.module('auth')
       toggle: function () {
         self.loader.onLoad = !self.loader.onLoad;
       }
+    };
+    this.credentials = {
+      userName: 'MANAGER1',
+      password: 'test12345'
+    };
+
+    this.form = {
+      $submitted: false
     };
     /**
      * @ngdoc property
@@ -92,23 +100,25 @@ angular.module('auth')
      * @description form is submitted
      * @methodOf auth:LoginCtrl
      */
-    this.submit = function (loginform) {
-      if (loginform.$valid && !self.state.loginIsInProgress) {
+    this.submit = function () {
+      if (self.form.$valid && !self.state.loginIsInProgress) {
         self.state.loginIsInProgress = true;
         if (self.loader.cssClass === 'error') {
           self.loader.toggle();
           self.loader.cssClass = 'balanced';
         }
+
         // LoginService login
-        this.service.logon()
+        Relution.web.login(self.credentials)
           //successfully logged in
-          .success(function () {
+          .then(function () {
             self.loader.toggle();
             self.loader.cssClass = 'balanced';
             self.state.loginIsInProgress = false;
+            return $state.go('mway.approval.list');
           })
           //error
-          .error(function (e) {
+          .catch(function (e) {
             self.state.loginIsInProgress = false;
             self.loader.cssClass = 'error';
             //mostly offline
@@ -130,7 +140,7 @@ angular.module('auth')
           AlertService.map({
             cssClass: 'assertive',
             title: 'Following Errors Occured',
-            message: self.getMessage(loginform.$error.required),
+            message: self.getMessage(self.form.$error.required),
             buttons: [
               {
                 text: $filter('translate')('CLOSE'),
@@ -143,11 +153,13 @@ angular.module('auth')
     };
 
     $scope.$on('$ionicView.afterEnter', function () {
-      // on enter add configuration for relution-client-security icons
-      // self.icons = $relutionSecurityConfig.iconSet;
-      // //the login template
-      // self.include = $relutionSecurityConfig.view;
-      // self.service.setUsername('MANAGER1');
-      // self.service.setPassword('test12345');
+      Relution.init({
+        serverUrl: Config.ENV.SERVER_URL,
+        application: 'workflow'
+      })
+        .then(function (info) {
+          console.log(info);
+          console.log(self.form);
+        });
     });
   });

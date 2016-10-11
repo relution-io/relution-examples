@@ -5,7 +5,7 @@
  * @description add your description
  */
 angular.module('approval')
-  .service('ApprovalsService', function ApprovalsService($q, $rootScope, $window, $filter, RelutionLiveData, Config, ServerUrlService, AlertService) {
+  .service('ApprovalsService', function ApprovalsService ($q, $rootScope, $window, $filter, Config, ServerUrlService, AlertService) {
     var self = this;
     this.pendings = [];
     this.init = true;
@@ -27,9 +27,10 @@ angular.module('approval')
      * @name model
      * @propertyOf approval:ApprovalsService
      */
-    this.model = RelutionLiveData.Model.extend({
+    this.model = Relution.livedata.Model.extend({
       idAttribute: 'id',
-      entity: 'approvals'
+      entity: 'approvals',
+      urlRoot: Config.COLLECTIONS_URLS.APPROVALS
     });
     /**
      * @ngdoc property
@@ -91,7 +92,7 @@ angular.module('approval')
       }
     };
     this.setEntries = function () {
-      self.entries = new self.collection();
+      self.entries = self.store.createCollection(self.collection);
       /**
        * @ngdoc event
        * @name remove
@@ -214,17 +215,15 @@ angular.module('approval')
      */
     this.fetchCollection = function (explicit) {
       if (!self.collection) {
-        self.store = new RelutionLiveData.SyncStore({
+        self.store = new Relution.livedata.SyncStore({
           useLocalStore: true,
           useSocketNotify: true,
           useOfflineChanges: true,
           error: self.handleError.bind(self)
         });
-        self.collection = RelutionLiveData.Collection.extend({
+        self.collection = Relution.livedata.Collection.extend({
           model: self.model,
-          entity: 'approvals',
-          store: self.store,
-          url: Config.ENV.SERVER_URL + Config.SERVER_API_PATH + Config.COLLECTIONS_URLS.APPROVALS
+          entity: 'approvals'
         });
       }
       if (!self.entries) {

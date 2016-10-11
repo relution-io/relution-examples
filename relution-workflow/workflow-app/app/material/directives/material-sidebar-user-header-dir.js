@@ -11,7 +11,7 @@ angular.module('material')
     templateUrl: 'material/templates/user-header.html',
     restrict: 'E',
     link: function postLink (scope) {
-      // scope.user = UserService.getUser();
+      scope.user = Relution.security.getCurrentUser();
     }
   };
 });

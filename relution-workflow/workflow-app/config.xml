@@ -2,10 +2,10 @@
 <widget id="com.relution.workflow.sample" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>workflow</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Mobile Workflows vereinfacht Entscheidungsprozesse und ermöglicht das mobile Bearbeiten von anstehenden Anfragen und Genehmigungen.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="info@mwaysolutions.com" href="http://relution.io">
+        mWay-solutions (Pascal Brewing)
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />

@@ -12,7 +12,7 @@ angular.module('main')
     },
     SERVER_API_PATH: '/mway/workflow',
     COLLECTIONS_URLS: {
-      APPROVALS: '/approvals',
+      APPROVALS: 'approvals',
       APPROVALS_CHANGES: '/changes',
       REGISTER_DEVICES: '/approval/api/v1/devices'
     },
