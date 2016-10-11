@@ -48,8 +48,8 @@ angular.module('auth')
       }
     };
     this.credentials = {
-      userName: 'MANAGER1',
-      password: 'test12345'
+      userName: Config.USERS[0].name,
+      password: Config.USERS[0].password
     };
 
     this.form = {
