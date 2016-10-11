@@ -54,8 +54,8 @@
             function (TranslationService) {
               return TranslationService.getDefaultTranslationKey().then(function (key) {
                 if (!key) {
-                  TranslationService.setDefaultTranslationKey('en-IN');
-                  return 'en-IN';
+                  TranslationService.setDefaultTranslationKey('de-DE');
+                  return 'de-DE';
                 }
                 return key;
               });

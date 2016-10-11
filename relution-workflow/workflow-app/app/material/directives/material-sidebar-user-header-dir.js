@@ -12,6 +12,7 @@ angular.module('material')
     restrict: 'E',
     link: function postLink (scope) {
       scope.user = Relution.security.getCurrentUser();
+      console.log(scope.user);
     }
   };
 });

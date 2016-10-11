@@ -14,15 +14,16 @@
             </span>
           </ion-item>
           <translation-select-item></translation-select-item>
-          <form name="loginC.form" ng-submit="loginC.submit()">
-            <label class="item item-input">
-              <input type="text" name="userName" placeholder="{{Username|translate}}" ng-model="loginC.credentials.userName" required />
-            </label>
-            <label class="item item-input">
-              <input type="password" name="password" placeholder="{{Password|translate}}" ng-model="loginC.credentials.password" required />
-            </label>
-            <button class="button button-block button-positive">{{'Sign In'|translate}}</button>
-          </form>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              {{'User'|translate}}
+            </div>
+             <select name="user" ng-model="loginC.selectedUser">
+              <option value="null">{{'Please Choose a User'|translate}}</option>
+              <option ng-repeat="user in loginC.users" ng-value="user.name">{{user.name}}</option>
+            </select>
+          </label>
+          <button ng-click="loginC.submit()" class="button button-block button-positive">{{'Sign In'|translate}}</button>
         </ion-list>
         <ion-list ng-if="loginC.service.isLoggedIn">
           <ion-item class="item-text-wrap">

@@ -27,7 +27,7 @@
  * @description add your description
  */
 angular.module('auth')
-  .controller('LoginCtrl', function LoginCtrl ($scope, $rootScope, $state, $filter, AlertService, Config) {
+  .controller('LoginCtrl', function LoginCtrl ($scope, $rootScope, $state, $filter, $ionicLoading, AlertService, Config) {
     var self = this;
     this.state = {
       loginIsInProgress: false
@@ -47,6 +47,9 @@ angular.module('auth')
         self.loader.onLoad = !self.loader.onLoad;
       }
     };
+    this.users = Config.USERS;
+    this.selectedUser = 'Manager1';
+
     this.credentials = {
       userName: Config.USERS[0].name,
       password: Config.USERS[0].password
@@ -101,15 +104,22 @@ angular.module('auth')
      * @methodOf auth:LoginCtrl
      */
     this.submit = function () {
-      if (self.form.$valid && !self.state.loginIsInProgress) {
+      var userNames = self.users.map(function (user) {
+        return user.name;
+      });
+      var selectedIndex = userNames.indexOf(self.selectedUser);
+      if (self.selectedUser &&  selectedIndex !== -1) {
+        $ionicLoading.show();
         self.state.loginIsInProgress = true;
         if (self.loader.cssClass === 'error') {
           self.loader.toggle();
           self.loader.cssClass = 'balanced';
         }
-
         // LoginService login
-        Relution.web.login(self.credentials)
+        Relution.web.login({
+          userName: Config.USERS[selectedIndex].name,
+          password: Config.USERS[selectedIndex].password
+        })
           //successfully logged in
           .then(function () {
             self.loader.toggle();
@@ -123,15 +133,15 @@ angular.module('auth')
             self.loader.cssClass = 'error';
             //mostly offline
             if (e.status === 0) {
-              self.alert('Following Errors Occured', 'please check your Internet Connection');
+              self.alert('Following Errors Occured', $filter('translate')('please check your Internet Connection'));
             }
             //Unautthorized
             if (e.status === 403 || e.status === 401) {
-              self.alert('Following Errors Occured', 'User is Unauthorized please check your credentials');
+              self.alert('Following Errors Occured', $filter('translate')('User is Unauthorized please check your credentials'));
             }
             //Url not available
             if (e.status === 404) {
-              self.alert('Following Errors Occured', 'This Url is not available');
+              self.alert('Following Errors Occured', $filter('translate')('This Url is not available'));
             }
           });
       } else {
@@ -140,7 +150,19 @@ angular.module('auth')
           AlertService.map({
             cssClass: 'assertive',
             title: 'Following Errors Occured',
-            message: self.getMessage(self.form.$error.required),
+            message: $filter('translate')('Please choose a user first'),
+            buttons: [
+              {
+                text: $filter('translate')('CLOSE'),
+                type: 'button-positive'
+              }
+            ]
+          });
+        } else {
+          AlertService.map({
+            cssClass: 'warning',
+            title: 'Following Errors Occured',
+            message: $filter('translate')('Login is in Progress please wait'),
             buttons: [
               {
                 text: $filter('translate')('CLOSE'),
