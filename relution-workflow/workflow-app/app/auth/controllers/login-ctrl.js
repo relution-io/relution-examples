@@ -27,7 +27,7 @@
  * @description add your description
  */
 angular.module('auth')
-  .controller('LoginCtrl', function LoginCtrl ($scope, $rootScope, $state, $filter, LoginService, AlertService, $relutionSecurityConfig) {
+  .controller('LoginCtrl', function LoginCtrl ($scope, $rootScope, $state, $filter, AlertService) {
     var self = this;
     this.state = {
       loginIsInProgress: false
@@ -53,7 +53,7 @@ angular.module('auth')
      * @description the relution-client-security Login Service
      * @propertyOf auth:LoginCtrl
      */
-    this.service = LoginService;
+    // this.service = LoginService;
     /**
      * @ngdoc method
      * @name getMessage
@@ -144,10 +144,10 @@ angular.module('auth')
 
     $scope.$on('$ionicView.afterEnter', function () {
       // on enter add configuration for relution-client-security icons
-      self.icons = $relutionSecurityConfig.iconSet;
-      //the login template
-      self.include = $relutionSecurityConfig.view;
-      self.service.setUsername('MANAGER1');
-      self.service.setPassword('test12345');
+      // self.icons = $relutionSecurityConfig.iconSet;
+      // //the login template
+      // self.include = $relutionSecurityConfig.view;
+      // self.service.setUsername('MANAGER1');
+      // self.service.setPassword('test12345');
     });
   });

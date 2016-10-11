@@ -74,15 +74,14 @@ angular.module('main')
     BOWER_DEPENDENCIES: [
       {name: 'ionic', version: ionic.version},
       {name: 'angular', version: angular.version.full},
-      {name: 'bikini', version: Relution.LiveData.Version},
+      {name: 'relution-sdk', version: Relution.Version},
       'angular-animate',
       'angular-sanitize',
       'angular-ui-router',
       'ngCordova',
       'angular-translate',
       'angular-localForage',
-      'angular-deferred-bootstrap',
-      'relution-client-security'
+      'angular-deferred-bootstrap'
     ],
     PUSH_DEVICE_KEY: '__PUSH_DEVICE__',
     //PUSH_APP_UUID: '5D1E25BA-3ED3-4919-84C1-B79B19D6A097',

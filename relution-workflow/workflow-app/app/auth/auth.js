@@ -25,7 +25,7 @@
  * @name auth
  * @description the auth module
  */
-angular.module('auth', ['main', 'relutionClientSecurity'])
+angular.module('auth', ['main'])
   .config(function ($stateProvider) {
     $stateProvider
       .state('mway.login', {

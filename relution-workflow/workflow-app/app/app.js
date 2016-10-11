@@ -27,7 +27,6 @@ angular.module('relutionLiveData', [
   'angularMoment',
   'LocalForageModule',
   'ngCordova',
-  'relutionClientSecurity',
   'push',
   'material',
   'pascalprecht.translate',
@@ -82,14 +81,14 @@ angular.module('relutionLiveData', [
     //$ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.views.forwardCache(true);
   })
-  .config(function ($relutionSecurityConfigProvider, Config) {
-    $relutionSecurityConfigProvider.setLayoutStyle('INPUT_ICONS');
-    $relutionSecurityConfigProvider.setIcons();
-    $relutionSecurityConfigProvider.forwardStateAfterLogin = 'mway.approval.list';
-    $relutionSecurityConfigProvider.forwardStateAfterLogout = 'mway.login';
-    $relutionSecurityConfigProvider.loginUrl = Config.ENV.SERVER_URL + Config.CURRENT_AUTHORIZATION_LOGIN;
-    $relutionSecurityConfigProvider.logoutUrl = Config.ENV.SERVER_URL + Config.CURRENT_AUTHORIZATION_LOGOUT;
-  })
+  // .config(function ($relutionSecurityConfigProvider, Config) {
+  //   $relutionSecurityConfigProvider.setLayoutStyle('INPUT_ICONS');
+  //   $relutionSecurityConfigProvider.setIcons();
+  //   $relutionSecurityConfigProvider.forwardStateAfterLogin = 'mway.approval.list';
+  //   $relutionSecurityConfigProvider.forwardStateAfterLogout = 'mway.login';
+  //   $relutionSecurityConfigProvider.loginUrl = Config.ENV.SERVER_URL + Config.CURRENT_AUTHORIZATION_LOGIN;
+  //   $relutionSecurityConfigProvider.logoutUrl = Config.ENV.SERVER_URL + Config.CURRENT_AUTHORIZATION_LOGOUT;
+  // })
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.backButton.text('');
     $ionicConfigProvider.backButton.icon('ion-android-arrow-back');

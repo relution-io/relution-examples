@@ -20,8 +20,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-(function (angular, localforage, deferredBootstrapper, Q) {
-  Q.longStackSupport = true;
+(function (angular, localforage, deferredBootstrapper) {
+  // Q.longStackSupport = true;
   /**
    * Bootstrap your applicatin on device ready if is device defined
    * @constructor
@@ -86,4 +86,4 @@
   document.addEventListener('DOMContentLoaded', function () {
     new CordovaInit();
   });
-}(window.angular, localforage, window.deferredBootstrapper, Q));
+}(window.angular, localforage, window.deferredBootstrapper));

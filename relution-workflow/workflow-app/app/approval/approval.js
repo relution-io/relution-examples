@@ -12,11 +12,11 @@ angular.module('approval', ['main'])
           }
         },
         resolve: {
-          'hasToken': function (LoginService, $q, $state, $relutionSecurityConfig) {
-            if (!LoginService.isLoggedIn) {
-              return $q.when($state.go($relutionSecurityConfig.forwardStateAfterLogout));
-            }
-            return $q.when(false);
+          'hasToken': function (LoginService, $q, $state) {
+            // if (!LoginService.isLoggedIn) {
+            //   return $q.when($state.go($relutionSecurityConfig.forwardStateAfterLogout));
+            // }
+            return $q.when(true);
           }
         }
       })

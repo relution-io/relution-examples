@@ -6,11 +6,11 @@
  * @description add your description
  */
 angular.module('approval')
-  .controller('ApprovalCtrl', function ApprovalCtrl (Config, UserService, LoginService, $relutionSecurityConfig) {
+  .controller('ApprovalCtrl', function ApprovalCtrl (Config) {
     this.sideBarLinks = Config.SIDEBAR_LINKS;
-    this.user = UserService.getUser();
-    this.config = $relutionSecurityConfig;
-    this.logout = function () {
-      LoginService.secureLogout();
-    };
+    // this.user = UserService.getUser();
+    // this.config = $relutionSecurityConfig;
+    // this.logout = function () {
+    //   LoginService.secureLogout();
+    // };
   });
