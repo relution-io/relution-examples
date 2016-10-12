@@ -47,14 +47,8 @@ angular.module('auth')
         self.loader.onLoad = !self.loader.onLoad;
       }
     };
-    this.users = Config.USERS;
-    this.selectedUser = 'Manager1';
-
-    this.credentials = {
-      userName: Config.USERS[0].name,
-      password: Config.USERS[0].password
-    };
-
+    this.users = Config.ENV.USERS;
+    this.selectedUser = Config.ENV.USERS[0].name;
     this.form = {
       $submitted: false
     };
@@ -117,14 +111,15 @@ angular.module('auth')
         }
         // LoginService login
         Relution.web.login({
-          userName: Config.USERS[selectedIndex].name,
-          password: Config.USERS[selectedIndex].password
+          userName: Config.ENV.USERS[selectedIndex].name,
+          password: Config.ENV.USERS[selectedIndex].password
         })
           //successfully logged in
           .then(function () {
             self.loader.toggle();
             self.loader.cssClass = 'balanced';
             self.state.loginIsInProgress = false;
+            // $ionicLoading.hide();
             return $state.go('mway.approval.list');
           })
           //error

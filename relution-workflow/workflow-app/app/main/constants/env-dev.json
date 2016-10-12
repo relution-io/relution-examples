@@ -1,7 +1,21 @@
 {
-  "SERVER_URL": "http://192.168.99.100:8080",
+  "SERVER_URL": "https://pbrewing.mwaysolutions.com",
   "PUSH": {
     "SERVER": "",
     "GOOGLE_SENDER_ID": "608280733216"
-  }
+  },
+  "USERS": [
+    {
+      "name": "MANAGER1",
+      "password": "test12345"
+    },
+    {
+      "name": "PEOPLE1",
+      "password": "test12345"
+    },
+    {
+      "name": "PEOPLE2",
+      "password": "test12345"
+    }
+  ]
 }

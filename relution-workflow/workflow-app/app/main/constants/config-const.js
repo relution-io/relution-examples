@@ -3,11 +3,25 @@ angular.module('main')
   .constant('Config', {
     ENV: {
       /*inject-env*/
-      'SERVER_URL': 'https://mway.relution.io',
+      'SERVER_URL': 'https://pbrewing.mwaysolutions.com',
     'PUSH': {
       'SERVER': '',
       'GOOGLE_SENDER_ID': '608280733216'
-    }
+    },
+    'USERS': [
+      {
+        'name': 'MANAGER1',
+        'password': 'test12345'
+      },
+      {
+        'name': 'PEOPLE1',
+        'password': 'test12345'
+      },
+      {
+        'name': 'PEOPLE2',
+        'password': 'test12345'
+      }
+    ]
       /*endinject*/
     },
     SERVER_API_PATH: '/mway/workflow',
@@ -71,24 +85,6 @@ angular.module('main')
         ]
       }
     },
-    USERS: [
-      {
-        name: 'Manager1',
-        password: 'manager123'
-      },
-      {
-        name: 'User1',
-        password: 'user12345'
-      },
-      {
-        name: 'User2',
-        password: 'user12345'
-      },
-      {
-        name: 'User3',
-        password: 'user12345'
-      }
-    ],
     BOWER_DEPENDENCIES: [
       { name: 'ionic', version: ionic.version },
       { name: 'angular', version: angular.version.full },

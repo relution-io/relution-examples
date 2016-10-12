@@ -54,7 +54,7 @@ angular.module('about')
       $ionicLoading.hide();
       $rootScope.$broadcast('show-content');
       if ($window.cordova) {
-        $cordovaAppVersion.getAppVersion().then(function (version) {
+        $cordovaAppVersion.getVersionNumber().then(function (version) {
           self.appVersion = version;
         });
       } else {

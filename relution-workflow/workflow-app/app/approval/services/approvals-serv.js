@@ -91,6 +91,9 @@ angular.module('approval')
         self.pendings.slice(index, 1);
       }
     };
+    this.applyAsync = function () {
+      $rootScope.$applyAsync();
+    };
     this.setEntries = function () {
       self.entries = self.store.createCollection(self.collection);
       /**
@@ -99,50 +102,8 @@ angular.module('approval')
        * @eventOf approval:ApprovalsService
        * @eventType emit
        */
-      this.entries.on('remove', function () {
-        //console.log('remove');
-        $rootScope.$applyAsync();
-      });
-      /**
-       * @ngdoc event
-       * @name add
-       * @eventOf approval:ApprovalsService
-       * @eventType emit
-       */
-      this.entries.on('add', function () {
-        //console.log('add');
-        $rootScope.$applyAsync();
-      });
-      /**
-       * @ngdoc event
-       * @name set
-       * @eventOf approval:ApprovalsService
-       * @eventType emit
-       */
-      this.entries.on('set', function () {
-        //console.log('set');
-        $rootScope.$applyAsync();
-      });
-      /**
-       * @ngdoc event
-       * @name sync
-       * @eventOf approval:ApprovalsService
-       * @eventType emit
-       */
-      this.entries.on('sync', function () {
-        console.log('sync');
-        $rootScope.$applyAsync();
-      });
-      /**
-       * @ngdoc event
-       * @name change
-       * @eventOf approval:ApprovalsService
-       * @eventType emit
-       */
-      this.entries.on('change', function () {
-        //console.log('change', self.entries.models);
-        $rootScope.$applyAsync();
-      });
+      this.entries.on('remove add set sync change', self.applyAsync);
+
     };
     /**
      * @ngdoc method
@@ -200,12 +161,12 @@ angular.module('approval')
      * @methodOf approval:ApprovalsService
      */
     this.resetCollection = function () {
-      var lastMesgTime = self.store.getLastMessageTime();
-      self.store.setLastMessageTime(self.entries.channel, '');
-      return self.fetchCollection(self.entriesOptions).finally(function () {
-        $rootScope.$applyAsync();
-        self.store.setLastMessageTime(self.entries.channel, lastMesgTime);
-      });
+      self.entries.off('remove add set sync change', self.applyAsync);
+      self.entries.stopListening();
+      self.store = null;
+      self.collection = null;
+      self.entries = null;
+      self.init = true;
     };
 
     /**

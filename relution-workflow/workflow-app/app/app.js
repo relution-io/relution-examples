@@ -27,7 +27,7 @@ angular.module('relutionLiveData', [
   'angularMoment',
   'LocalForageModule',
   'ngCordova',
-  'push',
+  // 'push',
   'material',
   'pascalprecht.translate',
   'translation',
@@ -62,9 +62,9 @@ angular.module('relutionLiveData', [
     });
     $translateProvider.preferredLanguage(languageDefault);
   })
-  .constant('$ionicLoadingConfig', {
-    templateUrl: 'main/templates/directives/hourglass.html'
-  })
+  // .constant('$ionicLoadingConfig', {
+  //   templateUrl: 'main/templates/directives/hourglass.html'
+  // })
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('mway', {
@@ -99,7 +99,7 @@ angular.module('relutionLiveData', [
   })
   .run(function ($cordovaSplashscreen, $window, $translate, $state, $cordovaGlobalization, $cordovaAppVersion, $rootScope, Config, NetworkService, MomentService) {
     if ($window.cordova) {
-      $cordovaAppVersion.getAppVersion().then(function (version) {
+      $cordovaAppVersion.getVersionNumber().then(function (version) {
         $rootScope.appVersion = version;
       });
     } else {

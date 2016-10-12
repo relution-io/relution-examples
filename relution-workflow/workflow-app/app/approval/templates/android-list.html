@@ -13,18 +13,18 @@
       </button>
     </h1>
     <div class="buttons">
-      <button class="button button-icon button-clear ion-ios-search" ng-click="approvalListC.switchToInput($event);"></button>
+      <button class="button button-icon button-clear ion-ios-search button-dark" ng-click="approvalListC.switchToInput($event);"></button>
     </div>
     <div class="progress-bar" ng-if="!approvalListC.search">
-      <progress-bar in-progress="approvalListC.inProgress"></progress-bar>
+      <progress-bar in-progress="approvalListC.state.inProgress"></progress-bar>
     </div>
   </div>
   <div ng-show="approvalListC.search"  class="bar bar-header search-approval-filter item-input-inset">
     <label class="item-input-wrapper">
-      <i class="icon ion-ios7-search placeholder-icon"></i>
+      <i class="icon ion-ios-search placeholder-icon"></i>
       <input type="search" class="search-input" delayed-model="filter.value" data-delay="500" placeholder="Search" />
     </label>
-    <button class="button button-clear" ng-click="approvalListC.switchToInput($event);">
+    <button class="button button-clear button-dark" ng-click="approvalListC.switchToInput($event);">
       <i class="icon ion-ios-close-empty"></i>
     </button>
   </div>

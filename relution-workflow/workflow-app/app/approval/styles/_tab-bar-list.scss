@@ -101,6 +101,12 @@
 $shadow-color: 0;
 $shadow-strong: 9px;
 .view-list {
+  .button-bar > .button:first-child {
+    border-radius: 0px 0px 0px 0px;
+  }
+  .button-bar > .button:last-child {
+    border-radius: 0px 0px 0px 0px;
+  }
   .product-list {
     .first {
       .item {

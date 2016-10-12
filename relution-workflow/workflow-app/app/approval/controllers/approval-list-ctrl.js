@@ -6,21 +6,23 @@
  * @description add your description
  */
 angular.module('approval')
-  .controller('ApprovalListCtrl', function ApprovalListCtrl ($scope, $q, $filter, $timeout, $state, $ionicScrollDelegate, $ionicLoading, $window, MomentService, $rootScope, PushService, ApprovalsService) {
-    this.available = true;
-    this.inProgress = false;
-    this.overflowScroll = ionic.Platform.isAndroid();
-    this.noMoreItemsAvailable = false;
-    this.moreOptions = {};
-    $scope.filter = {
-      value: ''
-    };
+  .controller('ApprovalListCtrl', function ApprovalListCtrl ($scope, $q, $filter, $timeout, $state, $ionicScrollDelegate, $ionicLoading, $window, MomentService, $rootScope, ApprovalsService) {
     /**
      * @ngdoc property
      * @name self
      * @propertyOf approval:ApprovalListCtrl
      */
     var self = this;
+    this.state = {
+      inProgress: false
+    };
+    this.available = true;
+    this.overflowScroll = ionic.Platform.isAndroid();
+    this.noMoreItemsAvailable = false;
+    this.moreOptions = {};
+    $scope.filter = {
+      value: ''
+    };
     /**
      * @ngdoc property
      * @name search
@@ -74,7 +76,7 @@ angular.module('approval')
      * @methodOf approval:ApprovalListCtrl
      */
     this.sync = function () {
-      self.inProgress = true;
+      self.state.inProgress = true;
       $scope.$broadcast('scroll.refreshComplete');
       ApprovalsService.init = true;
       self.noMoreItemsAvailable = false;
@@ -83,10 +85,11 @@ angular.module('approval')
         ApprovalsService.init = false;
         //self.approvals.rows = $filter('orderBy')(ApprovalsService.entries.models, '-attributes.approver[attributes.current || 0].receivedDate');
         self.approvals.rows = ApprovalsService.entries.models;
-        self.inProgress = false;
+        self.state.inProgress = false;
         return true;
-      }).catch(function () {
-        self.inProgress = false;
+      })
+      .catch(function () {
+        self.state.inProgress = false;
       });
     };
     /**
@@ -124,21 +127,19 @@ angular.module('approval')
      * @description fetch the collection
      */
     $scope.$on('$ionicView.beforeEnter', function () {
-      self.inProgress = true;
+      self.state.inProgress = true;
     });
+
     $scope.$on('$ionicView.enter', function () {
       MomentService.getLanguagePrefix();
-      // debugger;
       $q.resolve(ApprovalsService.fetchCollection())
         .then(function () {
-          self.inProgress = false;
-          if (!self.approvals.rows) {
-            self.approvals.rows = ApprovalsService.entries.models;
-          }
+          self.state.inProgress = false;
+          self.approvals.rows = ApprovalsService.entries.models;
           ApprovalsService.init = false;
         })
         .catch(function (e) {
-          self.inProgress = false;
+          self.state.inProgress = false;
           console.error(e);
         });
     });

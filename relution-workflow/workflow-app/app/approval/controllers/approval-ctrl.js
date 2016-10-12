@@ -6,11 +6,13 @@
  * @description add your description
  */
 angular.module('approval')
-  .controller('ApprovalCtrl', function ApprovalCtrl (Config) {
+  .controller('ApprovalCtrl', function ApprovalCtrl ($q, $state, Config, ApprovalsService) {
     this.sideBarLinks = Config.SIDEBAR_LINKS;
-    // this.user = UserService.getUser();
-    // this.config = $relutionSecurityConfig;
-    // this.logout = function () {
-    //   LoginService.secureLogout();
-    // };
+    this.logout = function () {
+      $q.resolve(Relution.web.logout())
+        .finally(function () {
+          ApprovalsService.resetCollection();
+          return $state.go('mway.login');
+        });
+    };
   });

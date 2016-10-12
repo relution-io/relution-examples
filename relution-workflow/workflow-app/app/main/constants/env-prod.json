@@ -3,5 +3,23 @@
   "PUSH": {
     "SERVER": "",
     "GOOGLE_SENDER_ID": "608280733216"
-  }
+  },
+  "USERS": [
+    {
+      "name": "Manager1",
+      "password": "manager123"
+    },
+    {
+      "name": "User1",
+      "password": "user12345"
+    },
+    {
+      "name": "User2",
+      "password": "user12345"
+    },
+    {
+      "name": "User3",
+      "password": "user12345"
+    }
+  ]
 }
