@@ -2,7 +2,7 @@
   <!-- Sidebar brand image -->
   <div class="sidebar-image">
     <div class="icon-circle">
-      <i class="icon ion-person"></i>
+      <img ng-src="main/assets/svg/{{user.salutation === 'mr' ? 'man.svg': 'girl.svg'}}" />
     </div>
     <div class="user-data">{{user.givenName}} {{user.surname}}</div>
   </div>

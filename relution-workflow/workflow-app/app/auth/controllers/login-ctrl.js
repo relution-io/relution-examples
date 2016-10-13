@@ -124,6 +124,7 @@ angular.module('auth')
           })
           //error
           .catch(function (e) {
+            $ionicLoading.hide();
             self.state.loginIsInProgress = false;
             self.loader.cssClass = 'error';
             //mostly offline
@@ -172,11 +173,8 @@ angular.module('auth')
     $scope.$on('$ionicView.afterEnter', function () {
       Relution.init({
         serverUrl: Config.ENV.SERVER_URL,
-        application: 'workflow'
-      })
-        .then(function (info) {
-          console.log(info);
-          console.log(self.form);
-        });
+        application: 'workflow',
+        debug: false
+      });
     });
   });

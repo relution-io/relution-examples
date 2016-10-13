@@ -7,7 +7,7 @@
  */
 angular.module('settings')
   .controller('SettingsCtrl', function SettingsCtrl ($scope, $ionicLoading, $rootScope, Config) {
-    // this.user = UserService.getUser();
+    this.user = Relution.security.getCurrentUser();
     this.server = Config.ENV.SERVER_URL;
 
     $scope.$on('$ionicView.enter', function () {

@@ -191,12 +191,13 @@ angular.module('approval')
         self.setEntries();
       }
       if (self.init || explicit) {
-        return self.entries.fetch(self.entriesOptions).then(function (res) {
-          return res;
-        })
-        .catch(function (e) {
-          console.error(e);
-        });
+        return self.entries.fetch(self.entriesOptions)
+          .then(function (res) {
+            return res;
+          })
+          .catch(function (e) {
+            console.error(e);
+          });
       }
     };
   });

@@ -3,23 +3,27 @@ angular.module('main')
   .constant('Config', {
     ENV: {
       /*inject-env*/
-      'SERVER_URL': 'https://pbrewing.mwaysolutions.com',
+      'SERVER_URL': 'https://mway.relution.io',
     'PUSH': {
       'SERVER': '',
       'GOOGLE_SENDER_ID': '608280733216'
     },
     'USERS': [
       {
-        'name': 'MANAGER1',
-        'password': 'test12345'
+        'name': 'Manager1',
+        'password': 'manager123'
       },
       {
-        'name': 'PEOPLE1',
-        'password': 'test12345'
+        'name': 'User1',
+        'password': 'user12345'
       },
       {
-        'name': 'PEOPLE2',
-        'password': 'test12345'
+        'name': 'User2',
+        'password': 'user12345'
+      },
+      {
+        'name': 'User3',
+        'password': 'user12345'
       }
     ]
       /*endinject*/
@@ -88,14 +92,7 @@ angular.module('main')
     BOWER_DEPENDENCIES: [
       { name: 'ionic', version: ionic.version },
       { name: 'angular', version: angular.version.full },
-      { name: 'relution-sdk', version: Relution.Version },
-      'angular-animate',
-      'angular-sanitize',
-      'angular-ui-router',
-      'ngCordova',
-      'angular-translate',
-      'angular-localForage',
-      'angular-deferred-bootstrap'
+      { name: 'relution-sdk', version: Relution.version }
     ],
     PUSH_DEVICE_KEY: '__PUSH_DEVICE__',
     //PUSH_APP_UUID: '5D1E25BA-3ED3-4919-84C1-B79B19D6A097',
