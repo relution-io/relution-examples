@@ -16,6 +16,7 @@ angular.module('main')
       },
       link: function postLink (scope) {
         scope.getIcon = function () {
+          // console.log(scope.objectType);
           if (scope.state !== 'open' && scope.objectType === 'SC') {
             return 'ic_type_order_change';
           } else if (scope.state === 'open' && scope.objectType === 'SC') {

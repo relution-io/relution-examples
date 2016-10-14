@@ -6,7 +6,7 @@
  * @description add your description
  */
 angular.module('approval')
-  .controller('ApprovalListCtrl', function ApprovalListCtrl($scope, $q, $filter, $timeout, $state, $ionicScrollDelegate, $ionicLoading, $window, MomentService, $rootScope, ApprovalsService) {
+  .controller('ApprovalListCtrl', function ApprovalListCtrl ($scope, $q, $filter, $timeout, $state, $ionicScrollDelegate, $ionicLoading, $window, MomentService, $rootScope, ApprovalsService) {
     /**
      * @ngdoc property
      * @name self
@@ -127,6 +127,9 @@ angular.module('approval')
         .then(function () {
           self.state.inProgress = false;
           self.approvals.rows = ApprovalsService.entries.models;
+          // self.approvals.rows.forEach(function(model) {
+          //   console.log(model.attributes.header.objectType);
+          // });
           ApprovalsService.init = false;
         })
         .catch(function (e) {

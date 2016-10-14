@@ -27,6 +27,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var security = require('relution/security.js');
 var push = require('relution/push.js');
+var NativeModule = process.binding('native_module');
 
 // datasync setup
 var backbone = require('backbone');
@@ -156,13 +157,15 @@ module.exports = {
   },
 
   approve: function approveSample(approval, callback) {
-    setImmediate(module.exports.destroy.bind(this, approval));
-    return callback(undefined, approval);
+    var result = callback(undefined, approval);
+    setTimeout(module.exports.destroy.bind(this, approval), 5000);
+    return result;
   },
 
   reject: function rejectSample(approval, callback) {
-    setImmediate(module.exports.destroy.bind(this, approval));
-    return callback(undefined, approval);
+    var result = callback(undefined, approval);
+    setTimeout(module.exports.destroy.bind(this, approval), 5000);
+    return result;
   }
 
 };

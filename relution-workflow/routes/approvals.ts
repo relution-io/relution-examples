@@ -78,12 +78,12 @@ export function init(app: express.Application) {
       // incoming patch request is translated to an update by infrastructure,
       // process update to access additional data of the approval, such as provider field
       update: function updateApproval(approval, callback) {
+
         // select provider
         var provider = providers[approval.provider];
         if (!provider) {
           return callback(new HttpError(400));
         }
-
         // apply approve/reject function of provider
         switch (approval.state) {
           case 'approved':
