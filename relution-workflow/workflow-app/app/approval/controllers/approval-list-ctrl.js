@@ -6,7 +6,7 @@
  * @description add your description
  */
 angular.module('approval')
-  .controller('ApprovalListCtrl', function ApprovalListCtrl ($scope, $q, $filter, $timeout, $state, $ionicScrollDelegate, $ionicLoading, $window, MomentService, $rootScope, ApprovalsService) {
+  .controller('ApprovalListCtrl', function ApprovalListCtrl($scope, $q, $filter, $timeout, $state, $ionicScrollDelegate, $ionicLoading, $window, MomentService, $rootScope, ApprovalsService) {
     /**
      * @ngdoc property
      * @name self
@@ -20,6 +20,7 @@ angular.module('approval')
     this.overflowScroll = ionic.Platform.isAndroid();
     this.noMoreItemsAvailable = false;
     this.moreOptions = {};
+    this.service = ApprovalsService;
     $scope.filter = {
       value: ''
     };
@@ -81,16 +82,16 @@ angular.module('approval')
       ApprovalsService.init = true;
       self.noMoreItemsAvailable = false;
       var queue = [ApprovalsService.resetCollection()];
-      $q.all(queue).then(function () {
-        ApprovalsService.init = false;
-        //self.approvals.rows = $filter('orderBy')(ApprovalsService.entries.models, '-attributes.approver[attributes.current || 0].receivedDate');
-        self.approvals.rows = ApprovalsService.entries.models;
-        self.state.inProgress = false;
-        return true;
-      })
-      .catch(function () {
-        self.state.inProgress = false;
-      });
+      $ionicLoading.show();
+      $q.all(queue)
+        .then(function () {
+          return self.setData();
+        })
+        .catch(function () {
+          ApprovalsService.init = false;
+          self.state.inProgress = false;
+        })
+        .finally($ionicLoading.hide);
     };
     /**
      * @ngdoc method
@@ -118,7 +119,20 @@ angular.module('approval')
     };
 
     this.goEdit = function (id, state) {
-      return $state.go('mway.approval.edit', {id: id, state: state});
+      return $state.go('mway.approval.edit', { id: id, state: state });
+    };
+
+    this.setData = function () {
+      return $q.resolve(ApprovalsService.fetchCollection())
+        .then(function () {
+          self.state.inProgress = false;
+          self.approvals.rows = ApprovalsService.entries.models;
+          ApprovalsService.init = false;
+        })
+        .catch(function (e) {
+          self.state.inProgress = false;
+          console.error(e);
+        });
     };
     /**
      * @ngdoc method
@@ -132,16 +146,7 @@ angular.module('approval')
 
     $scope.$on('$ionicView.enter', function () {
       MomentService.getLanguagePrefix();
-      $q.resolve(ApprovalsService.fetchCollection())
-        .then(function () {
-          self.state.inProgress = false;
-          self.approvals.rows = ApprovalsService.entries.models;
-          ApprovalsService.init = false;
-        })
-        .catch(function (e) {
-          self.state.inProgress = false;
-          console.error(e);
-        });
+      return self.setData();
     });
 
     $rootScope.$on('$translateChangeSuccess', function () {

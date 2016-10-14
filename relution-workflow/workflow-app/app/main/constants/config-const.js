@@ -28,7 +28,7 @@ angular.module('main')
     ]
       /*endinject*/
     },
-    SERVER_API_PATH: '/mway/workflow',
+    SERVER_API_PATH: '/mway/workflow-app',
     COLLECTIONS_URLS: {
       APPROVALS: 'approvals',
       APPROVALS_CHANGES: '/changes',

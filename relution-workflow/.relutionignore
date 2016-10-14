@@ -19,7 +19,7 @@ workflow-app/res/**
 workflow-app/app/**
 workflow-app/**/.*
 workflow-app/**/*.*
-!workflow-app/www/**
-!workflow-app/www/**/*.*
+workflow-app/www/**
+workflow-app/www/**/*.*
 workflow-app/resources
 .git

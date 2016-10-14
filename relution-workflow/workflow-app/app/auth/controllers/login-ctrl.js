@@ -173,7 +173,7 @@ angular.module('auth')
     $scope.$on('$ionicView.afterEnter', function () {
       Relution.init({
         serverUrl: Config.ENV.SERVER_URL,
-        application: 'workflow',
+        application: 'workflow-app',
         debug: false
       });
     });

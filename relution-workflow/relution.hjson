@@ -4,7 +4,7 @@
   //description for the project
   description: Mobile Workflows vereinfacht Entscheidungsprozesse und ermöglicht das mobile Bearbeiten von anstehenden Anfragen und Genehmigungen.
   //on which baseAlias the app is available
-  baseAlias: /workflow
+  baseAlias: /workflow-app
   //uuid identifier dont touch it!!!
   uuid: 0f85d920-83dd-11e6-9696-c5301de09d15
   //static files root folder to your client application
